@@ -1,6 +1,5 @@
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Assembly-CSharp.dll
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Assembly-CSharp.pdb
-D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Autodesk.Fbx.dll
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Microsoft.Win32.Primitives.dll
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\mscorlib.dll
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\netstandard.dll
@@ -116,10 +115,6 @@ D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\System.Xml.XmlDocument.dll
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\System.Xml.XmlSerializer.dll
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\System.Xml.XPath.dll
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\System.Xml.XPath.XDocument.dll
-D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Formats.Fbx.Editor.dll
-D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Formats.Fbx.Runtime.dll
-D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Recorder.dll
-D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Recorder.Editor.dll
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Rider.Editor.dll
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.TextMeshPro.dll
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.TextMeshPro.Editor.dll
@@ -265,17 +260,12 @@ D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\UnityEngine.XRModule.xml
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\UnityEditor.xml
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Timeline.Editor.pdb
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.VSCode.Editor.pdb
-D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Formats.Fbx.Editor.pdb
-D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Recorder.Editor.pdb
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.TextMeshPro.Editor.pdb
-D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Recorder.pdb
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\UnityEngine.UI.pdb
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Timeline.pdb
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Rider.Editor.pdb
-D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Autodesk.Fbx.pdb
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.VisualStudio.Editor.pdb
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.TextMeshPro.pdb
-D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\Unity.Formats.Fbx.Runtime.pdb
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\UnityEditor.UI.pdb
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\UnityEngine.TestRunner.pdb
 D:\Unity\Proyectos\Arkanoid\Temp\Bin\Debug\UnityEditor.TestRunner.pdb

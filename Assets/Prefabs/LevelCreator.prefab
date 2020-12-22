@@ -45,4 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patternList:
   - {fileID: 5713456756552016293, guid: 64d1f1cb883927d469f6283008425439, type: 3}
+  - {fileID: 2623433239534066834, guid: 11f93c49b2b64df4db23f496d498f0c6, type: 3}
+  - {fileID: 5175110979093808358, guid: 717dd5a506b01d44797514247ab43113, type: 3}
   brick: {fileID: 5127975090116161643, guid: 0432b769057a6d940960184487110d1f, type: 3}

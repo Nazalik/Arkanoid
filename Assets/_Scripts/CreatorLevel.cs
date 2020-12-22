@@ -22,16 +22,33 @@ public class CreatorLevel : Singleton<CreatorLevel>
     private List<GameObject> bricks = new List<GameObject>();
 
     /// <summary>
+    /// List of indestructible object for decoration
+    /// </summary>
+    private List<GameObject> indestructibleObjects = new List<GameObject>();
+
+    /// <summary>
     /// Catch positions for bricks in a pattern and instantiate a brick with random level in each.
     /// </summary>
     /// <param name="currentLevel">Current level of the game, max level of instantiate bricks</param>
     public void CreateLevel(int currentLevel)
     {
+        ClearLevel();
+
+        int levelPattern = Random.Range(0, patternList.Count);
         List<Transform> positions = new List<Transform>();
-        //TO DO: select a random pattern
-        for ( int i = 0; i < patternList[0].gameObject.transform.childCount; i++)
+        
+
+        for ( int i = 0; i < patternList[levelPattern].gameObject.transform.childCount; i++)
         {
-            positions.Add(patternList[0].gameObject.transform.GetChild(i).transform);
+            if (!patternList[levelPattern].gameObject.transform.GetChild(i).CompareTag("Wall"))
+            {
+                positions.Add(patternList[levelPattern].gameObject.transform.GetChild(i).transform);
+            }
+            else
+            {
+                GameObject obj = Instantiate(patternList[levelPattern].gameObject.transform.GetChild(i).gameObject);
+                indestructibleObjects.Add(obj);
+            }
         }        
         GameObject instance;
         foreach (Transform pos in positions)
@@ -62,6 +79,11 @@ public class CreatorLevel : Singleton<CreatorLevel>
         {
             Destroy(bricks[i]);
             bricks.RemoveAt(i);
+        }
+        for (int i = indestructibleObjects.Count - 1; i > -1; i--)
+        {
+            Destroy(indestructibleObjects[i]);
+            indestructibleObjects.RemoveAt(i);
         }
     }
 }
