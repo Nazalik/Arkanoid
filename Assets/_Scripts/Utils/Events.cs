@@ -9,6 +9,21 @@ public class Events
     [System.Serializable] public class EventStartGame : UnityEvent { }
 
     /// <summary>
+    /// Event to pause the game.
+    /// </summary>
+    [System.Serializable] public class EventPauseGame : UnityEvent { }
+
+    /// <summary>
+    /// Event to respawn the game.
+    /// </summary>
+    [System.Serializable] public class EventRespawnGame : UnityEvent { }
+
+    /// <summary>
+    /// Event to respawn the game.
+    /// </summary>
+    [System.Serializable] public class EventQuitGame : UnityEvent { }
+
+    /// <summary>
     /// Event to notify the destruction of a brick.
     /// </summary>
     [System.Serializable] public class EventBlockDestroyed : UnityEvent<GameObject, int> { }

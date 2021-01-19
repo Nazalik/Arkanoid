@@ -121,6 +121,10 @@ public class GameManager : Singleton<GameManager>
 
     //Events
     public Events.EventStartGame eventStartGame;
+    public Events.EventPauseGame eventPauseGame;
+    public Events.EventPauseGame eventResumeGame;
+    public Events.EventRespawnGame eventRespawnGame;
+    public Events.EventQuitGame eventQuitGame;
     public Events.EventGameStateChanged eventGameStateChanged;
     public Events.EventBlockDestroyed eventBlockDestroyed;
     public Events.EventBallDestroyed eventBallDestroyed;
@@ -142,7 +146,11 @@ public class GameManager : Singleton<GameManager>
         ShowMaxScore();
 
         eventStartGame.AddListener(StartGame);
-        
+        eventPauseGame.AddListener(PauseGame);
+        eventResumeGame.AddListener(ResumeGame);
+        eventRespawnGame.AddListener(RespawnGame);
+        eventQuitGame.AddListener(QuitGame);
+
         eventBlockDestroyed.AddListener(BrickDestroyed);
         eventBallDestroyed.AddListener(BallDestroyed);
         eventExitGameOver.AddListener(RestartGame);
@@ -171,7 +179,7 @@ public class GameManager : Singleton<GameManager>
     {
         StartCoroutine(StartGameCoroutine());
     }
-
+    
     /// <summary>
     /// Generate a new level, update the score to 0, set number of lives to 3 and load Main scene and wait until the load finish to change the game state and create a new ball.
     /// </summary>
@@ -191,6 +199,62 @@ public class GameManager : Singleton<GameManager>
 
         CreateBall();
         yield break;
+    }
+
+    /// <summary>
+    /// Pause the game.
+    /// </summary>
+    private void PauseGame()
+    {
+        UpdateGameState(GameState.pause);
+    }
+
+    /// <summary>
+    /// Resume the game.
+    /// </summary>
+    private void ResumeGame()
+    {
+        UpdateGameState(_previousGameState);
+    }
+
+    /// <summary>
+    /// Quit the game and return to main menu.
+    /// </summary>
+    private void QuitGame()
+    {
+        CreatorLevel.Instance.ClearLevel();
+        RestartGame();
+        EliminatedBalls();
+        UnloadLevel("MainScene");
+        
+    }
+
+    /// <summary>
+    /// Respawn 
+    /// </summary>
+    private void RespawnGame()
+    {
+        bool removeLife = true;
+
+        foreach(GameObject ball in balls)
+        {
+            if (ball.transform.position.y > 4)
+            {
+                removeLife = false;
+            }
+        }
+
+        if(removeLife)
+        {
+            SpentLife();            
+        }
+        balls[0].transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, ballPrefab.transform.position.y, ballPrefab.transform.position.z);
+        for (int i = 0; i < balls.Count - 1; i++)
+        {
+            Destroy(balls[i]);
+            balls.RemoveAt(i);
+        }
+        UpdateGameState(GameState.inGame);
     }
 
     /// <summary>
@@ -320,7 +384,7 @@ public class GameManager : Singleton<GameManager>
     /// <param name="pointValue">Int points for destoy it</param>
     private void BrickDestroyed(GameObject brick, int pointValue)
     {
-        if(_currentGameState != GameState.gameOver)
+        if(_currentGameState != GameState.gameOver && _currentGameState != GameState.boot)
         {
             PowerUpSpawner.Instance.GeneratePowerUp(brick.transform.position);
             CreatorLevel.Instance.EliminateBrick(brick);
@@ -354,6 +418,34 @@ public class GameManager : Singleton<GameManager>
     }
 
     /// <summary>
+    /// Remove a life from the counter and launch game over if necessary.
+    /// </summary>
+    private void SpentLife()
+    {
+        numberOfLives--;
+
+        if (numberOfLives >= 0)
+        {
+            UIManager.Instance.SpentLife(numberOfLives);
+
+            CreateBall();
+        }
+
+        if (numberOfLives <= 0)
+        {
+            SetMaxScore();
+
+            UpdateGameState(GameState.gameOver);
+            CreatorLevel.Instance.ClearLevel();
+            EliminatedBalls();
+            int maxScore = PlayerPrefs.GetInt(MAX_SCORE, 0);
+            UIManager.Instance.WriteMaxScoreGO(maxScore);
+            UIManager.Instance.WriteScoreGO(score);
+            UnloadLevel("MainScene");
+        }
+    }
+
+    /// <summary>
     /// Remove ball from list, if is last ball rid a life.
     /// If have more lives create a new ball, else set max score and go to game over.
     /// </summary>
@@ -364,27 +456,7 @@ public class GameManager : Singleton<GameManager>
 
         if (balls.Count == 0)
         {
-            numberOfLives--;
-
-            if (numberOfLives >= 0)
-            {
-                UIManager.Instance.SpentLife(numberOfLives);
-
-                CreateBall();
-            }
-
-            if (numberOfLives <= 0)
-            {
-                SetMaxScore();
-
-                UpdateGameState(GameState.gameOver);
-                CreatorLevel.Instance.ClearLevel();
-                EliminatedBalls();
-                int maxScore = PlayerPrefs.GetInt(MAX_SCORE, 0);
-                UIManager.Instance.WriteMaxScoreGO(maxScore);
-                UIManager.Instance.WriteScoreGO(score);
-                UnloadLevel("MainScene");
-            }
+            SpentLife();
         }        
     }
 

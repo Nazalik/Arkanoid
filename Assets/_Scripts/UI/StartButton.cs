@@ -18,8 +18,9 @@ public class StartButton : MonoBehaviour
         _button.onClick.AddListener(StartGame);
     }
 
-    // Update method.
-    // Invoke start game event of GameManager.
+    /// <summary>
+    /// Invoke start game event of GameManager.
+    /// </summary>
     private void StartGame()
     {
         GameManager.Instance.eventStartGame.Invoke();

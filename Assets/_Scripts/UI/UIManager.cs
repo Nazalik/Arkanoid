@@ -31,6 +31,12 @@ public class UIManager : Singleton<UIManager>
     public GameObject _gameOverUI;
 
     /// <summary>
+    /// GameObject that group pause menu screen objects.
+    /// </summary>
+    [Tooltip("GameObject that group pause menu screen objects")]
+    public GameObject _pauseMenuUI;
+
+    /// <summary>
     /// In game score text.
     /// </summary>
     [Tooltip("In game score text")]
@@ -123,6 +129,15 @@ public class UIManager : Singleton<UIManager>
     }
 
     /// <summary>
+    /// Enable or disable pause screen UI.
+    /// </summary>
+    /// <param name="active">Bool for set active method, true enable, false disable</param>
+    private void SetPauseMenuUIActive(bool active)
+    {
+        _pauseMenuUI.gameObject.SetActive(active);
+    }
+
+    /// <summary>
     /// Call methods to enable or disable UI components according to game state changes.
     /// </summary>
     /// <param name="currentState">New game state</param>
@@ -136,6 +151,8 @@ public class UIManager : Singleton<UIManager>
         SetInGameUIActive(currentState == GameManager.GameState.inGame);
 
         SetGameOverUIActive(currentState == GameManager.GameState.gameOver);
+
+        SetPauseMenuUIActive(currentState == GameManager.GameState.pause);
     }
 
     /// <summary>

@@ -18,8 +18,9 @@ public class ExitButton : MonoBehaviour
         _button.onClick.AddListener(ExitGame);
     }
 
-    // Update method.
-    // Close app.
+    /// <summary>
+    /// Close app.
+    /// </summary>
     private void ExitGame()
     {
         Application.Quit();
